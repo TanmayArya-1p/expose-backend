@@ -1,0 +1,8 @@
+{
+    "database" : "expose",
+    "sweeper" : {
+        "session_timeout_ms" : 60000,
+        "timezone_offset_hours" : 0,
+        "sweep_interval_ms" : 10000
+    }
+}
