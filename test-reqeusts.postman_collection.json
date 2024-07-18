@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "756c47e2-40b6-453d-95e7-4638dc72e5e3",
+		"name": "Expose-Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20772829"
+	},
+	"item": [
+		{
+			"name": "CREATE SESSION",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"auth\" : \"123\",\r\n    \"pubkey\" : \"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA8SJ8S53ZbAHLwo+rEhJTesWE2I3mMPzxH7qKx897BRuJ2EpEZQ8s7hdCs/e04iyNLiHbzWL07KNcAuY3k7PUcFGvQlD6umG69jeChsQ3Q3IifjH901ts7LNvWIjBOoaFjMc/ZRak8o5wdvvcTErUj5rIXFcf2VXJnOPQ3a/Y+g6mU60N+kfxoKNb7XqwhDNFjvRTBZ5bT7ZE3bVrJhcTVtAJFZruD3L/3ISJvKF9elRra1cdKFQqcG2DoT0qgNoM+Yqa0Z5rj7EBU2xW6eHfGpngsf+Mm4600FVUnJ4BEjEidwcrc8YYaCL1yNr76zu7Aqa/zMpiAFwmY220Fdm/2QIDAQAB\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/create_session",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"create_session"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JOIN SESSION",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pubkey\" : \"123\",\r\n    \"auth\" : \"123414\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/session/:sid/join",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"session",
+						":sid",
+						"join"
+					],
+					"variable": [
+						{
+							"key": "sid",
+							"value": "6697bb76a11e889453ec98f0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SESSION METADATA FETCH",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\" : \"66980a61b593d24f72233a29\",\r\n    \"authblob\" : \"PgVBJiXl2iM9/lEVX2+jHLMRuXZ/4rh41HqYY0ulpYA++h65FT9uKTI9hlLlnTQRW+Nq3qAwCazjjxgYhkk7mwjvhekPexI03hdEIHyMTOgAozSk9NmD6pS4Ff65pxyVbr15bPlEgYCErQlLa93fiZtYp/6uaUjqY/px07hds7OuLP1X+LHzcrw6RRPJUdT2+nrQXn/MeDmi13j4MdGrZd+oVr45XnNbywCbrMlKTeC/xfUr1hDzMFE4oVZg76NvlcgEvejhuOgRyYwhHaiAYre9aaS4xuLCSDXLhv8mwwA0goI6gaFb7l4GXF0McHvnR6PKqBB5YagTqwKUswZszg==\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/session/:sid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"session",
+						":sid"
+					],
+					"variable": [
+						{
+							"key": "sid",
+							"value": "66980a61b593d24f72233a28"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE PR",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\" : \"66980a61b593d24f72233a29\",\r\n    \"authblob\" : \"PgVBJiXl2iM9/lEVX2+jHLMRuXZ/4rh41HqYY0ulpYA++h65FT9uKTI9hlLlnTQRW+Nq3qAwCazjjxgYhkk7mwjvhekPexI03hdEIHyMTOgAozSk9NmD6pS4Ff65pxyVbr15bPlEgYCErQlLa93fiZtYp/6uaUjqY/px07hds7OuLP1X+LHzcrw6RRPJUdT2+nrQXn/MeDmi13j4MdGrZd+oVr45XnNbywCbrMlKTeC/xfUr1hDzMFE4oVZg76NvlcgEvejhuOgRyYwhHaiAYre9aaS4xuLCSDXLhv8mwwA0goI6gaFb7l4GXF0McHvnR6PKqBB5YagTqwKUswZszg==\",\r\n    \"to\" : \"66980a61b593d24f72233a29\",\r\n    \"request\" : \"SeedImage 123\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/session/:sid/createpr",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"session",
+						":sid",
+						"createpr"
+					],
+					"variable": [
+						{
+							"key": "sid",
+							"value": "66980a61b593d24f72233a28"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE PR",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\" : \"66980a61b593d24f72233a29\",\r\n    \"authblob\" : \"PgVBJiXl2iM9/lEVX2+jHLMRuXZ/4rh41HqYY0ulpYA++h65FT9uKTI9hlLlnTQRW+Nq3qAwCazjjxgYhkk7mwjvhekPexI03hdEIHyMTOgAozSk9NmD6pS4Ff65pxyVbr15bPlEgYCErQlLa93fiZtYp/6uaUjqY/px07hds7OuLP1X+LHzcrw6RRPJUdT2+nrQXn/MeDmi13j4MdGrZd+oVr45XnNbywCbrMlKTeC/xfUr1hDzMFE4oVZg76NvlcgEvejhuOgRyYwhHaiAYre9aaS4xuLCSDXLhv8mwwA0goI6gaFb7l4GXF0McHvnR6PKqBB5YagTqwKUswZszg==\",\r\n    \"prid\" : \"669818f4ff899f24287b80e8\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/session/:sid/delpr",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"session",
+						":sid",
+						"delpr"
+					],
+					"variable": [
+						{
+							"key": "sid",
+							"value": "66980a61b593d24f72233a28"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "APPEND IMG",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\" : \"66980a61b593d24f72233a29\",\r\n    \"authblob\" : \"PgVBJiXl2iM9/lEVX2+jHLMRuXZ/4rh41HqYY0ulpYA++h65FT9uKTI9hlLlnTQRW+Nq3qAwCazjjxgYhkk7mwjvhekPexI03hdEIHyMTOgAozSk9NmD6pS4Ff65pxyVbr15bPlEgYCErQlLa93fiZtYp/6uaUjqY/px07hds7OuLP1X+LHzcrw6RRPJUdT2+nrQXn/MeDmi13j4MdGrZd+oVr45XnNbywCbrMlKTeC/xfUr1hDzMFE4oVZg76NvlcgEvejhuOgRyYwhHaiAYre9aaS4xuLCSDXLhv8mwwA0goI6gaFb7l4GXF0McHvnR6PKqBB5YagTqwKUswZszg==\",\r\n    \"hash\" : \"hash example\",\r\n    \"size\" : 123\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/session/:sid/appendimg",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"session",
+						":sid",
+						"appendimg"
+					],
+					"variable": [
+						{
+							"key": "sid",
+							"value": "66980a61b593d24f72233a28"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MAKE ME SEED",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userid\" : \"66980a61b593d24f72233a29\",\r\n    \"authblob\" : \"PgVBJiXl2iM9/lEVX2+jHLMRuXZ/4rh41HqYY0ulpYA++h65FT9uKTI9hlLlnTQRW+Nq3qAwCazjjxgYhkk7mwjvhekPexI03hdEIHyMTOgAozSk9NmD6pS4Ff65pxyVbr15bPlEgYCErQlLa93fiZtYp/6uaUjqY/px07hds7OuLP1X+LHzcrw6RRPJUdT2+nrQXn/MeDmi13j4MdGrZd+oVr45XnNbywCbrMlKTeC/xfUr1hDzMFE4oVZg76NvlcgEvejhuOgRyYwhHaiAYre9aaS4xuLCSDXLhv8mwwA0goI6gaFb7l4GXF0McHvnR6PKqBB5YagTqwKUswZszg==\",\r\n    \"imageid\" : \"66982380ae7f712e1f622740\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/session/:sid/mms",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"session",
+						":sid",
+						"mms"
+					],
+					"variable": [
+						{
+							"key": "sid",
+							"value": "66980a61b593d24f72233a28"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

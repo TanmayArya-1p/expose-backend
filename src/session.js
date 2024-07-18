@@ -119,7 +119,7 @@ router.put("/:sid/createpr" , HardCheck , async (req, res) => {
 
     let newReq = new Request({to : to, from : res.locals.user, req : req.body.request, ts : Date.now()})
     res.locals.ses.pending_requests.push(newReq)
-    res.locals.ses.lastInteraction = Date.now()
+    res.locals.ses.lastInteraction = <Date className="n"></Date>ow()
     res.locals.ses.save()
     res.json({
         "msg" : "Request Created Successfully",
@@ -170,7 +170,7 @@ router.put("/:sid/appendimg" , HardCheck , (req, res) => {
         return;
     }
 
-    let newImg = new Image({hash : req.body.hash, size : req.body.size, ts : Date.now(), seed : res.locals.user})
+    let newImg = new Image({hash : req.body.hash, size : req.body.size, ts : Date.now(), seed : [res.locals.user]})
     res.locals.ses.images.push(newImg)
     res.locals.ses.lastInteraction = Date.now()
     res.locals.ses.save()
@@ -193,7 +193,7 @@ router.patch("/:sid/mms" , HardCheck , (req, res) => {
         })
         return;
     }
-    img.seed = res.locals.user
+    img.seed = [res.locals.user , ...img.seed]
     res.locals.ses.lastInteraction = Date.now()
     res.locals.ses.save()
     res.json({

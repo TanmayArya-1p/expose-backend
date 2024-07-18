@@ -5,11 +5,11 @@ const UserSchema = mongoose.Schema({
 })
 
 const RequestSchema = mongoose.Schema({
-    "to" : mongoose.Schema.ObjectId , "from" : mongoose.Schema.ObjectId , "req": String , "ts" : Number
+    "to" : UserSchema , "from" : UserSchema , "req": String , "ts" : Number
 })
 
 const ImageSchema = mongoose.Schema({
-    "hash" : String , "size" : Number , "ts" : Number , "seed" : mongoose.Schema.ObjectId
+    "hash" : String , "size" : Number , "ts" : Number , "seed" : [UserSchema]
 })
 
 const SessionSchema = new mongoose.Schema(
