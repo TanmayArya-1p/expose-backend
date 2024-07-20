@@ -58,6 +58,11 @@ app.post("/create_session", (req,res) => {
 })
 
 
+app.get("/alive_sessions" , async (req, res) => {
+    res.json((await Session.find()).map(a=> a.id))
+})
+
+
 app.listen(3000 , () => console.log("ALIVE"))
 
 

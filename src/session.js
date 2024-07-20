@@ -119,7 +119,7 @@ router.put("/:sid/createpr" , HardCheck , async (req, res) => {
 
     let newReq = new Request({to : to, from : res.locals.user, req : req.body.request, ts : Date.now()})
     res.locals.ses.pending_requests.push(newReq)
-    res.locals.ses.lastInteraction = <Date className="n"></Date>ow()
+    res.locals.ses.lastInteraction = Date.now()
     res.locals.ses.save()
     res.json({
         "msg" : "Request Created Successfully",
@@ -201,6 +201,7 @@ router.patch("/:sid/mms" , HardCheck , (req, res) => {
         "image" : img
     })
 })
+
 
 
 module.exports = {router}
