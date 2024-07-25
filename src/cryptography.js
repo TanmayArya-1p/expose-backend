@@ -24,39 +24,11 @@ async function generateKeyPair() {
   };
 }
 
-async function verifyMessage(publicKeyString, message, signature) {
-  const publicKeyBuffer = Uint8Array.from(atob(publicKeyString), c => c.charCodeAt(0)).buffer;
-  const publicKey = await crypto.subtle.importKey(
-    "spki",
-    publicKeyBuffer,
-    {
-      name: "RSA-PSS",
-      hash: "SHA-256"
-    },
-    true,
-    ["verify"]
-  );
-
-  const encodedMessage = new TextEncoder().encode(message);
-  let signatureBuffer =null
-  try{
-    signatureBuffer = Uint8Array.from(atob(signature), c => c.charCodeAt(0)).buffer;
-  }
-  catch(e){
-    console.error("HARD AUTH ERROR",e);
-    return false;
-  }
-
-  const isValid = await crypto.subtle.verify(
-    {
-      name: "RSA-PSS",
-      saltLength: 32
-    },
-    publicKey,
-    signatureBuffer,
-    encodedMessage
-  );
-
+async function verifyMessage(publicKey, message, signature) {
+  const verify = crypto.createVerify('SHA256');
+  verify.update(message);
+  verify.end();
+  const isValid = verify.verify(publicKey, signature, 'base64');
   return isValid;
 }
 
