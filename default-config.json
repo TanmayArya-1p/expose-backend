@@ -1,5 +1,5 @@
 {
-    "mserverurl" : "test-server-url",
-    "rserverurl" : "test-server-rserverurl",
-    "rserverkey" : "test-server-rserverkey"
+    "mserverurl" : "192.168.0.119:8000",
+    "rserverurl" : "192.168.0.119:3000",
+    "rserverkey" : "123"
 }
