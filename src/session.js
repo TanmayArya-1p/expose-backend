@@ -14,6 +14,7 @@ const router = express.Router()
 
 const HardAuthVerify = async (body , sessionID , userObject) => cryptography.verifyMessage(userObject.pubkey,sessionID + ":" + userObject.id ,body)
 async function HardCheck(req,res,next) {
+    console.log(req.body)
     let ses = await Session.findById(req.params.sid)
     if(!ses) {
         res.json({
@@ -37,7 +38,8 @@ async function HardCheck(req,res,next) {
     catch(e){
         console.log("ERROR IN HARD AUTH " , e)
     }
-
+    console.log("AUTHSTATUS" , authstatus)
+    console.log("PARAMS" + [req.body.authblob,ses.id,user].toString())
     if(!authstatus) {
         res.json({
             "msg" : "Authentication Failed"
@@ -80,10 +82,13 @@ router.post("/:sid/join" ,async (req,res) =>  {
                     "auth" : req.body.auth
                 })
             }
+            else{
+                res.json({"msg" : "Authentication Failed"})
+            }
 
         }
     )
-    res.json({"msg" : "Authentication Failed"})
+    
 })
 
 
@@ -92,8 +97,8 @@ router.post("/:sid/join" ,async (req,res) =>  {
 //     "authblob" : ""
 // }
 
-router.get("/:sid" ,HardCheck , async (req,res) => {
-    console.log(req.body)
+router.post("/:sid" ,HardCheck , async (req,res) => {
+    console.log(req.body, "PASSED HARD AUTH")
     res.json({
         "sessionid" : res.locals.ses.id,
         "users" : res.locals.ses.users,

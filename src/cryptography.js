@@ -1,4 +1,5 @@
 const { model } = require("mongoose");
+const crypto = require("crypto");
 
 async function generateKeyPair() {
   const keyPair = await crypto.subtle.generateKey(
@@ -25,7 +26,7 @@ async function generateKeyPair() {
 }
 
 async function verifyMessage(publicKey, message, signature) {
-  const verify = crypto.createVerify('SHA256');
+  const verify = crypto.createVerify('RSA-SHA256');
   verify.update(message);
   verify.end();
   const isValid = verify.verify(publicKey, signature, 'base64');

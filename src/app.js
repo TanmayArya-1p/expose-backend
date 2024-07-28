@@ -43,6 +43,7 @@ app.post("/create_session", (req,res) => {
         }
         let auth_hash = derivedKey.toString('hex') + ":" + salt
         let ses = new Session({"lastInteraction" : Date.now()  , "auth" : auth_hash})
+        console.log("REQ BODY",req.body)
         let creator = new User({pubkey: req.body.pubkey})
         ses.users.push(creator)
         console.log(util.inspect(ses))
