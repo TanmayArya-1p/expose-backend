@@ -145,12 +145,6 @@ router.delete("/:sid/delpr" , HardCheck , async (req, res) => {
         })
         return;
     }
-    if(res.locals.user.id !== pr.to.toString()){
-        res.json({
-            "msg" : "You are not authorized to delete this request"
-        })
-        return;
-    }
 
     res.locals.ses.pending_requests.remove(pr)
     res.locals.ses.lastInteraction = Date.now()
@@ -191,6 +185,7 @@ router.patch("/:sid/mms" , HardCheck , (req, res) => {
     //     "authblob" : "",
     //     "imageid" : ""
     // }
+    console.log("MMS PASSED HARD AUTH")
     let img = res.locals.ses.images.id(req.body.imageid)
     if(!img) {
         res.json({
@@ -198,7 +193,8 @@ router.patch("/:sid/mms" , HardCheck , (req, res) => {
         })
         return;
     }
-    img.seed = [res.locals.user , ...img.seed]
+    img.seed.push(res.locals.user)
+    img.save()
     res.locals.ses.lastInteraction = Date.now()
     res.locals.ses.save()
     res.json({
