@@ -1,5 +1,5 @@
 {
-    "mserverurl" : "192.168.0.119:8000",
-    "rserverurl" : "192.168.0.119:3000",
+    "mserverurl" : "60ae-2406-7400-56-1c12-e94f-7b6b-68d4-30a.ngrok-free.app",
+    "rserverurl" : "13.50.16.140:3000",
     "rserverkey" : "123"
 }
